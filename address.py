@@ -1,8 +1,8 @@
 from niveristand.clientapi import ChannelReference
 Power_On_chan = ChannelReference(
     'Targets/TruckSim_TTC580/Hardware/Chassis/DAQ/PXI1Slot2/Digital Output/port0/Power on')
-ReAX_GearA_Disable_chan = ChannelReference(
-    'Targets/TruckSim_TTC580/User Channels/NI-XNET/VCAN-B/ReAX_GearA (486535187)/ReAX_GearA (486535187) Disable')
+# ReAX_GearA_Disable_chan = ChannelReference(
+#     'Targets/TruckSim_TTC580/User Channels/NI-XNET/VCAN-B/ReAX_GearA (486535187)/ReAX_GearA (486535187) Disable')
 ReAX_GearB_Disable_chan = ChannelReference(
     'Targets/TruckSim_TTC580/User Channels/NI-XNET/VCAN-B/ReAX_GearB (486535443)/ReAX_GearB (486535443) Disable')
 RemoteAccelPedalPos_chan = ChannelReference(

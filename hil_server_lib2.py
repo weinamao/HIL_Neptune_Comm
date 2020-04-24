@@ -2,7 +2,7 @@
 from comtypes.client import CreateObject
 import time
 from niveristand.legacy import NIVeriStand
-from niveristand.clientapi import DoubleValue, BooleanValue
+from niveristand.clientapi import DoubleValue, BooleanValue, ChannelReference
 from niveristand.library import wait, multitask, nivs_yield, stop_task, task
 from niveristand import nivs_rt_sequence
 from address import *
@@ -13,14 +13,16 @@ def launch_veristand():
     print('wait for Veristand Launching')
     time.sleep(15)
     print('Wait end')
-    workspace = NIVeriStand.Workspace2('localhost')
-    return workspace
+    # workspace = NIVeriStand.Workspace2('localhost')
+    # return workspace
 
 
-def deploy_veristand(workspace, system_definition_file_path):
+def deploy_veristand(system_definition_file_path):
     """Customize each system definition file for B, C, D, E Truck"""
+    workspace = NIVeriStand.Workspace2('localhost')
     path = system_definition_file_path
     workspace.ConnectToSystem(path, True, 60000)
+    return workspace
 
 
 def disconnect_veristand(workspace):
@@ -44,10 +46,13 @@ def enter_autonomous():
     error_status = BooleanValue(False)
     enter_autonomous_complete = BooleanValue(False)
     enter_autonomous_succeeded = BooleanValue(False)
+    ReAX_GearA_Disable_chan = ChannelReference(
+        'Targets/TruckSim_TTC580/User Channels/NI-XNET/VCAN-B/ReAX_GearA (486535187)/ReAX_GearA (486535187) Disable')
 
     with multitask() as mt:
         @task(mt)
         def enter_30():
+
             ReAX_GearA_Disable_chan.value = 0
             ReAX_GearB_Disable_chan.value = 0
             # Set power supply
@@ -79,10 +84,15 @@ def enter_autonomous():
 
 
 if __name__ == '__main__':
-    print(power_supply(10))
-    result_workspace = launch_veristand()
-    deploy_veristand(result_workspace, "C:\\Users\\Public\\"
-                                      "Documents\\National Instruments\\NI VeriStand 2018"
-                                      "\\Examples\\Stimulus Profile\\Engine Demo\\Engine Demo.nivssdf")
-    print("deploy Success")
-    disconnect_veristand(result_workspace)
+    try:
+        print(power_supply(13))
+        # launch_veristand()
+        # result_workspace = deploy_veristand("C:\\Users\\Public\\"
+        #                                   "Documents\\National Instruments\\NI VeriStand 2018"
+        #                                   "\\Examples\\Stimulus Profile\\Engine Demo\\Engine Demo.nivssdf")
+        result_workspace = deploy_veristand("C:\\NI\\TTC580_TruckSim_Tusimple_C\\"
+                                           "TTC580_TruckSim_Tusimple_C.nivssdf")
+        print("deploy Success")
+        enter_autonomous()
+    finally:
+        disconnect_veristand(result_workspace)
