@@ -1,3 +1,4 @@
+# Created by Weina Mao on 04/04/2020
 from comtypes.client import CreateObject
 import time
 from niveristand.legacy import NIVeriStand

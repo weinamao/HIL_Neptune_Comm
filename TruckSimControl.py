@@ -1,4 +1,6 @@
+# Created by Weina Mao on 05/04/2019
 import win32com.client
+
 
 class Trucksimcontrol():
     def __init__(self):

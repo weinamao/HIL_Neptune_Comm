@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5b999e61-a95d-4bc1-93de-3f2b339f8430" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hil_server_lib2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/niveristand_python.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/niveristand_python.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GEN50-30 PowerSupply.py" beforeDir="false" afterPath="$PROJECT_DIR$/GEN50-30 PowerSupply.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/enter_AD.py" beforeDir="false" afterPath="$PROJECT_DIR$/enter_AD.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hil_server_lib.py" beforeDir="false" afterPath="$PROJECT_DIR$/hil_server_lib.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hil_server_lib2.py" beforeDir="false" afterPath="$PROJECT_DIR$/hil_server_lib2.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -138,8 +131,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/hil_server_lib2.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-747">
-                  <caret line="33" column="29" lean-forward="true" selection-start-line="33" selection-start-column="29" selection-end-line="34" selection-end-column="17" />
+                <state>
+                  <caret column="2" selection-start-column="2" selection-end-column="2" />
                   <folding>
                     <element signature="e#0#40#0" expanded="true" />
                   </folding>
@@ -456,12 +449,12 @@
       <workItem from="1587169231394" duration="3865000" />
       <workItem from="1587419356164" duration="29509000" />
       <workItem from="1587682677685" duration="505000" />
-      <workItem from="1587683235402" duration="4158000" />
+      <workItem from="1587683235402" duration="4741000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="78268000" />
+    <option name="totallyTimeSpent" value="78851000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -762,8 +755,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hil_server_lib2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-747">
-          <caret line="33" column="29" lean-forward="true" selection-start-line="33" selection-start-column="29" selection-end-line="34" selection-end-column="17" />
+        <state>
+          <caret column="2" selection-start-column="2" selection-end-column="2" />
           <folding>
             <element signature="e#0#40#0" expanded="true" />
           </folding>
