@@ -7,8 +7,9 @@ def power_supply(input_voltage=6):
     PS2.Output.VoltageLimit = input_voltage
     PS2.Output.CurrentLimit = 1
     PS2.Output.Enabled = True
+    mes_vol= PS2.Output.MeasureVoltage()
     PS2.Close()
-    return PS2.Output.MeasureVoltage()
+    return mes_vol
 
 
 if __name__ == "__main__":

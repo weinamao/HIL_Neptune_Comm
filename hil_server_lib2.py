@@ -1,17 +1,16 @@
-from niveristand.legacy import NIVeriStand
-from niveristand import nivs_rt_sequence
-from niveristand.clientapi import DoubleValue, BooleanValue
-from address import *
-from niveristand.library import wait
-from niveristand.library import multitask, nivs_yield, stop_task, task
-import time
 from comtypes.client import CreateObject
+import time
+from niveristand.legacy import NIVeriStand
+from niveristand.clientapi import DoubleValue, BooleanValue
+from niveristand.library import wait, multitask, nivs_yield, stop_task, task
+from niveristand import nivs_rt_sequence
+from address import *
 
 
 def launch_veristand():
     NIVeriStand.LaunchNIVeriStand()
     print('wait for Veristand Launching')
-    time.sleep(10)
+    time.sleep(15)
     print('Wait end')
     workspace = NIVeriStand.Workspace2('localhost')
     return workspace
@@ -27,15 +26,15 @@ def disconnect_veristand(workspace):
     workspace.DisconnectFromSystem('', True)
 
 
-def set_power_supply_voltage(voltage=12.6, current=5):
-    ps = CreateObject("LambdaGenPS.LambdaGenPS")
-    ps.Initialize("COM3", True, True,'DriverSetup=SerialAddress=6, BaudRate=9600')
-    ps.Output.VoltageLimit = voltage
-    ps.Output.CurrentLimit = current
-    ps.Output.Enabled = True
+def power_supply(input_voltage=6):
+    ps2 = CreateObject("LambdaGenPS.LambdaGenPS")
+    ps2.Initialize("COM3", True, True, "DriverSetup=SerialAddress=6,BaudRate=9600")
+    ps2.Output.VoltageLimit = input_voltage
+    ps2.Output.CurrentLimit = 5
+    ps2.Output.Enabled = True
     time.sleep(2)
-    mes_vol = ps.Output.MeasureVoltage()
-    ps.Close()
+    mes_vol = ps2.Output.MeasureVoltage()
+    ps2.Close()
     return mes_vol
 
 
@@ -51,7 +50,7 @@ def enter_autonomous():
             ReAX_GearA_Disable_chan.value = 0
             ReAX_GearB_Disable_chan.value = 0
             # Set power supply
-            set_power_supply_voltage(13, 8)
+            power_supply(13)
             # Power on button
             Power_On_chan.value = 1
             # Check System Status
@@ -79,22 +78,10 @@ def enter_autonomous():
 
 
 if __name__ == '__main__':
-    print(set_power_supply_voltage(5, 5))
-    # # step 1: launch Veristand
-    # result_workspace = launch_veristand()
-    # # step 2: deploy Veristand system definition file
-    # deploy_veristand(result_workspace,"C:\\Users\\Public\\"
-    #                                   "Documents\\National Instruments\\NI VeriStand 2018"
-    #                                   "\\Examples\\Stimulus Profile\\Engine Demo\\Engine Demo.nivssdf")
-    # print("deploy Success")
-    # # step 3: write test steps
-    # set_val(ReAX_GearA_Disable_chan, 0)
-    # set_val(ReAX_GearB_Disable_chan, 0)
-    # set_power_supply_voltage(13, 8)
-    # check_val(SystemStatus_chan, 25)
-    # power_on_button()
-    # autonomous_on_button()
-    # check_val(SystemStatus_chan, 30)
-    # set_val(MODE_TRANS_chan, 18)
-    # # step 4: undeploy Veristand
-    # disconnect_veristand(result_workspace)
+    print(power_supply(10))
+    result_workspace = launch_veristand()
+    deploy_veristand(result_workspace, "C:\\Users\\Public\\"
+                                      "Documents\\National Instruments\\NI VeriStand 2018"
+                                      "\\Examples\\Stimulus Profile\\Engine Demo\\Engine Demo.nivssdf")
+    print("deploy Success")
+    disconnect_veristand(result_workspace)
